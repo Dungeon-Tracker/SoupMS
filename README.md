@@ -13,6 +13,4 @@ What I am working towards.
 
 ### Non-goals
 Explicitly excluded from the scope of the project.
-* __Public server__ - there will not be a released server because I don't plan on dealing with that stuff as I don't like multi-player games anymore.
-
-m? ![20250530_164547](https://github.com/user-attachments/assets/d6756c95-c17f-4c07-8a67-fea23f392687)
+* __Public server__ - there will not be a released server because I don't plan on dealing with that stuff as I don't like multi-player.
