@@ -7,7 +7,7 @@ This is a personal project to create a fun single player experience. I am planni
 
 ### Goals
 What I am working towards.
-* __Vanilla like experience__ - keep gameplay similar to vanilla
+* __Class rebalance__ - Bringing weaker classes more inline with the stronger ones.
 * __Custom partybquests__ - update PQs to be singleplayer
 * __Custom client files__ - planning on updating specifically I/L wizard to have better damage and buff magic attack to be competitive against weapon attack.
 
