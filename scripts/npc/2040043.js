@@ -35,7 +35,7 @@
 function generateCombo() {
     var countPicked = 0;
     var positions = Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
-    while (countPicked < 5) {
+    while (countPicked < 1) {
         var picked = Math.floor(Math.random() * positions.length);
         if (positions[picked] == 1) // Don't let it pick one its already picked.
         {
@@ -119,13 +119,13 @@ function action(mode, type, selection) {
                             if (map.getArea(y).contains(party.get(i).getPosition())) {
                                 playersOnCombo++;
                                 objset[y] = 1;
-                                //cm.mapMessage(5, "Player found on " + (y + 1));
+                            //    cm.mapMessage(5, "Player found on " + (y + 1));
                                 break;
                             }
                         }
                     }
 
-                    if (playersOnCombo == 5 || cm.getPlayer().gmLevel() > 1) {
+                    if (playersOnCombo >= 1 || cm.getPlayer().gmLevel() > 1) {
                         var comboStr = eim.getProperty("stage" + stage + "combo");
                         if (comboStr == null) {
                             comboStr = generateCombo();
@@ -133,11 +133,14 @@ function action(mode, type, selection) {
                         }
 
                         var combo = comboStr.split(',');
-                        var correctCombo = true;
-                        for (i = 0; i < objset.length && correctCombo; i++) {
-                            if (parseInt(combo[i]) != objset[i]) {
-                                //cm.mapMessage(5, "Combo failed on " + (i + 1));
-                                correctCombo = false;
+                        var correctCombo = false;
+                        //cm.mapMessage(5, "Combo: " + comboStr); //Being stupid is a big time waster :(
+                        for (i = 0; i < objset.length; i++) {  //This is set for solo play
+                         //   cm.mapMessage(5,"combo" + combo[i] + "objset" + objset[i]);
+
+                            if (parseInt(combo[i]) == 1 && objset[i]==1) {
+                              //  cm.mapMessage(5, "Combo failed on " + (i + 1));
+                                correctCombo = true;
                             }
                         }
                         if (correctCombo || cm.getPlayer().gmLevel() > 1) {
@@ -149,7 +152,7 @@ function action(mode, type, selection) {
                             cm.dispose();
                         }
                     } else {
-                        cm.sendNext("It looks like you haven't found the 5 boxes just yet. Please think of a different combination of boxes. Only 5 are allowed to stand on boxes, and if you move it may not count as an answer, so please keep that in mind. Keep going!");
+                        cm.sendNext("It looks like you haven't found the right box yet. Don't worry there are only 9 boxes and I think I coded this right!");
                         cm.dispose();
                     }
                 }

@@ -44,7 +44,7 @@ function action(mode, type, selection) {
 
                 cm.sendNext(ellinStr);
             } else if (mapid == 930000400) {
-                if (cm.haveItem(4001169, 20)) {
+                if (cm.haveItem(4001169, 5)) {
                     if (cm.isEventLeader()) {
                         cm.sendNext("Oh you have brought them! We can now continue, shall we proceed?");
                     } else {

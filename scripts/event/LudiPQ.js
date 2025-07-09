@@ -21,11 +21,23 @@
 /**
  * @author: Ronan
  * @event: Ludibrium PQ
+
+PQ Item: 4001022
+
+ Relevant NPCs:
+Stage 1: Red Balloon    2040036 - Lowered Coupon count 25 -> 15
+Stage 2: Orange Balloon 2040037 - Lowered Coupon count 15 -> 10
+Stage 3: Yellow Balloon 2040038 - Lowered Coupon count 32 -> 20
+Stage 4: Lime Balloon   2040039 - Lowered Coupon count 6 -> 3
+Stage 5: Green Balloon  2040040 - Lowered Coupon count 24 -> 12
+Stage 6: Aqua Balloon   2040041 - No change 133-221-333-123-111
+Stage 7: SkyBlue Bln    2040042 - Testing three snail change 40 -> 350 dmg
+Stage 8: Blue Balloon   2040043 - Changed array to 1 person
  */
 
 var isPq = true;
-var minPlayers = 5, maxPlayers = 6;
-var minLevel = 35, maxLevel = 50;
+var minPlayers = 1, maxPlayers = 6;
+var minLevel = 35, maxLevel = 70;
 var entryMap = 922010100;
 var exitMap = 922010000;
 var recruitMap = 221024500;

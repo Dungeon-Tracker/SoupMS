@@ -21,10 +21,15 @@
 /**
  * @author: Ronan
  * @event: Ludibrium Maze PQ
+
+ Relevant NPCs
+
+    Pietri - 9103000 - Lowered to 20 for clear
+
  */
 
 var isPq = true;
-var minPlayers = 3, maxPlayers = 6;
+var minPlayers = 1, maxPlayers = 6;
 var minLevel = 51, maxLevel = 70;
 var entryMap = 809050000;
 var exitMap = 809050017;

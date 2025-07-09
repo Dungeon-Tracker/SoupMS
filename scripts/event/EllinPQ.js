@@ -21,11 +21,15 @@
 /**
  * @author: Ronan
  * @event: Ellin PQ
+ NPCS:
+
+    Ellin - 2133000
+    Ellin - 2133001 - Changed from 20 marbles to 5 (this was annoying on test plays)
  */
 
 var isPq = true;
-var minPlayers = 4, maxPlayers = 6;
-var minLevel = 44, maxLevel = 55;
+var minPlayers = 1, maxPlayers = 6;
+var minLevel = 44, maxLevel = 75; //changed to 75 max level
 var entryMap = 930000000;
 var exitMap = 930000800;
 var recruitMap = 300030100;

@@ -23,9 +23,16 @@
  * @event: Kerning PQ
  */
 
+ /*
+    SoupMS additional info
+
+    Relevant NPC's
+    Cloto - 9020001 - Drives all scripts for every stage
+ */
+
 var isPq = true;
-var minPlayers = 3, maxPlayers = 4;
-var minLevel = 21, maxLevel = 30;
+var minPlayers = 1, maxPlayers = 4; //SoupMS - Enable SOLO PQ
+var minLevel = 21, maxLevel = 45;   //SoupMS - Increase level cap
 var entryMap = 103000800;
 var exitMap = 103000890;
 var recruitMap = 103000000;
@@ -82,7 +89,8 @@ function setEventRewards(eim) {
     itemQty = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 80, 80, 80, 50, 5, 15, 15, 30, 15, 15, 15, 15, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 3, 3];
     eim.setEventRewards(evLevel, itemSet, itemQty);
 
-    expStages = [100, 200, 400, 800, 1500];    //bonus exp given on CLEAR stage signal
+    //expStages = [100, 200, 400, 800, 1500];    //bonus exp given on CLEAR stage signal
+    expStages = [250, 350, 450, 950, 2000]; //SoupMS Increases exp gain slightly
     eim.setEventClearStageExp(expStages);
 }
 

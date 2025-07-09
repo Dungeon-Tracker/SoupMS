@@ -30,12 +30,12 @@
 var stage1Questions = Array(
     "Here's the question. Collect the same number of coupons as the minimum level required to make the first job advancement as warrior.",
     "Here's the question. Collect the same number of coupons as the minimum amount of STR needed to make the first job advancement as a warrior.",
-    "Here's the question. Collect the same number of coupons as the minimum amount of INT needed to make the first job advancement as a magician.",
+    "Here's the question. Collect the same number of coupons as the amount of EXP needed to Level 2 from Level 1.",
     "Here's the question. Collect the same number of coupons as the minimum amount of DEX needed to make the first job advancement as a bowman.",
-    "Here's the question. Collect the same number of coupons as the minimum amount of DEX needed to make the first job advancement as a thief.",
+    "Here's the question. Collect the same number of coupons as the number of AP gained per level.",
     "Here's the question. Collect the same number of coupons as the minimum level required to advance to 2nd job.",
     "Here's the question. Collect the same number of coupons as the minimum level required to make the first job advancement as a magician.");
-var stage1Answers = Array(10, 35, 20, 25, 25, 30, 8);
+var stage1Answers = Array(10, 35, 15, 25, 5, 30, 8);
 
 const Rectangle = Java.type('java.awt.Rectangle');
 var stage2Rects = Array(new Rectangle(-755, -132, 4, 218), new Rectangle(-721, -340, 4, 166), new Rectangle(-586, -326, 4, 150), new Rectangle(-483, -181, 4, 222));
@@ -45,7 +45,7 @@ var stage3Rects = Array(new Rectangle(608, -180, 140, 50), new Rectangle(791, -1
 var stage4Rects = Array(new Rectangle(910, -236, 35, 5), new Rectangle(877, -184, 35, 5),
     new Rectangle(946, -184, 35, 5), new Rectangle(845, -132, 35, 5),
     new Rectangle(910, -132, 35, 5), new Rectangle(981, -132, 35, 5));
-
+/* Original Arrays
 var stage2Combos = Array(Array(0, 1, 1, 1), Array(1, 0, 1, 1), Array(1, 1, 0, 1), Array(1, 1, 1, 0));
 var stage3Combos = Array(Array(0, 0, 1, 1, 1), Array(0, 1, 0, 1, 1), Array(0, 1, 1, 0, 1),
     Array(0, 1, 1, 1, 0), Array(1, 0, 0, 1, 1), Array(1, 0, 1, 0, 1),
@@ -58,6 +58,15 @@ var stage4Combos = Array(Array(0, 0, 0, 1, 1, 1), Array(0, 0, 1, 0, 1, 1), Array
     Array(1, 0, 0, 1, 1, 0), Array(1, 0, 1, 0, 0, 1), Array(1, 0, 1, 0, 1, 0),
     Array(1, 0, 1, 1, 0, 0), Array(1, 1, 0, 0, 0, 1), Array(1, 1, 0, 0, 1, 0),
     Array(1, 1, 0, 1, 0, 0), Array(1, 1, 1, 0, 0, 0));
+*/
+
+//SoupMS Solo Arrays
+
+var stage2Combos = Array(Array(1,0,0,0),Array(0,0,0,1)); //Bottom rope only
+var stage3Combos = Array(Array(0, 0, 0, 0, 1), Array(0, 0, 0, 1, 0), Array(0, 1, 0, 0, 0),
+                                   Array(1, 0, 0, 0, 0));
+var stage4Combos = Array(Array(0, 0, 0, 0, 0, 1), Array(0, 0, 0, 0, 1, 0), Array(0, 0, 0, 1, 0, 0),
+                        Array(0, 0, 1, 0, 0, 0), Array(0, 1, 0, 0, 0, 0), Array(1, 0, 0, 0, 0, 0));
 
 function clearStage(stage, eim, curMap) {
     eim.setProperty(stage + "stageclear", "true");
@@ -134,44 +143,45 @@ function action(mode, type, selection) {
                     cm.sendNext("Incredible! You cleared all the stages to get to this point. Here's a small prize for your job well done. Before you accept it, however, please make sure your use and etc. inventories have empty slots available.");
                 }
             } else if (curMap == 103000800) {   // stage 1
-                if (cm.isEventLeader()) {
-                    var numpasses = eim.getPlayerCount() - 1;     // minus leader
+                              if (cm.isEventLeader() & cm.hasItem(4001008,1)) { //SoupMS - Solo leader does questions
+                                  //var numpasses = eim.getPlayerCount() - 1;     // minus leader
+                                  var numpasses = 1; //SoupMS Solo Change
 
-                    if (cm.hasItem(4001008, numpasses)) {
-                        cm.sendNext("You gathered up " + numpasses + " passes! Congratulations on clearing the stage! I'll make the portal that sends you to the next stage. There's a time limit on getting there, so please hurry. Best of luck to you all!");
-                        clearStage(stage, eim, curMap);
-                        eim.gridClear();
-                        cm.gainItem(4001008, -numpasses);
-                    } else {
-                        cm.sendNext("I'm sorry, but you are short on the number of passes. You need to give me the right number of passes; it should be the number of members of your party minus the leader, in this case the total of " + numpasses + " to clear the stage. Tell your party members to solve the questions, gather up the passes, and give them to you.");
-                    }
-                } else {
-                    var data = eim.gridCheck(cm.getPlayer());
+                                  if (cm.hasItem(4001008, numpasses)) {
+                                      cm.sendNext("You gathered up " + numpasses + " passes! Congratulations on clearing the stage! I'll make the portal that sends you to the next stage. There's a time limit on getting there, so please hurry. Best of luck to you all!");
+                                      clearStage(stage, eim, curMap);
+                                      eim.gridClear();
+                                      cm.gainItem(4001008, -numpasses);
+                                  } else {
+                                      cm.sendNext("I'm sorry, but you are short on the number of passes. You need to give me the right number of passes; it should be the number of members of your party minus the leader, in this case the total of " + numpasses + " to clear the stage. Tell your party members to solve the questions, gather up the passes, and give them to you.");
+                                  }
+                              } else {
+                                  var data = eim.gridCheck(cm.getPlayer());
 
-                    if (data == 0) {
-                        cm.sendNext("Thanks for bringing me the coupons. Please hand the pass to your party leader to continue.");
-                    } else if (data == -1) {
-                        data = Math.floor(Math.random() * stage1Questions.length) + 1;   //data will be counted from 1
-                        eim.gridInsert(cm.getPlayer(), data);
+                                  if (data == 0) {
+                                      cm.sendNext("Thanks for bringing me the coupons. Please hand the pass to your party leader to continue.");
+                                  } else if (data == -1) {
+                                      data = Math.floor(Math.random() * stage1Questions.length) + 1;   //data will be counted from 1
+                                      eim.gridInsert(cm.getPlayer(), data);
 
-                        var question = stage1Questions[data - 1];
-                        cm.sendNext(question);
-                    } else {
-                        var answer = stage1Answers[data - 1];
+                                      var question = stage1Questions[data - 1];
+                                      cm.sendNext(question);
+                                  } else {
+                                      var answer = stage1Answers[data - 1];
 
-                        if (cm.itemQuantity(4001007) == answer) {
-                            cm.sendNext("That's the right answer! For that you have just received a #bpass#k. Please hand it to the leader of the party.");
-                            cm.gainItem(4001007, -answer);
-                            cm.gainItem(4001008, 1);
-                            eim.gridInsert(cm.getPlayer(), 0);
-                        } else {
-                            var question = stage1Questions[eim.gridCheck(cm.getPlayer()) - 1];
-                            cm.sendNext("I'm sorry, but that is not the right answer!\r\n" + question);
-                        }
-                    }
-                }
+                                      if (cm.itemQuantity(4001007) == answer) {
+                                          cm.sendNext("That's the right answer! For that you have just received a #bpass#k. Please hand it to the leader of the party.");
+                                          cm.gainItem(4001007, -answer);
+                                          cm.gainItem(4001008, 1);
+                                          eim.gridInsert(cm.getPlayer(), 0);
+                                      } else {
+                                          var question = stage1Questions[eim.gridCheck(cm.getPlayer()) - 1];
+                                          cm.sendNext("I'm sorry, but that is not the right answer!\r\n" + question);
+                                      }
+                                  }
+                              }
 
-                cm.dispose();
+                              cm.dispose();
             } else if (curMap == 103000801) {   // stage 2
                 var stgProperty = "stg2Property";
                 var stgCombos = stage2Combos;

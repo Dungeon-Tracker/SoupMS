@@ -57,11 +57,11 @@ function action(mode, type, selection) {
                 if (!cm.getEventInstance().isEventTeamTogether()) {
                     cm.sendOk("One or more instance team members is missing, please wait for them to reach here first.");
                     cm.dispose();
-                } else if (cm.hasItem(4001106, 30)) {
+                } else if (cm.hasItem(4001106, 20)) {
                     qty = cm.getItemQuantity(4001106);
                     cm.sendYesNo("Splendid! You have retrieved " + qty + " #t4001106# from this run, now your team will receive the fair amount of EXP from this action. Are you ready to get transported out?");
                 } else {
-                    cm.sendOk("Your party cannot finish this PQ yet, as you have not reached the minimum of 30 #t4001106#'s in hand yet.");
+                    cm.sendOk("Your party cannot finish this PQ yet, as you have not reached the minimum of 20 #t4001106#'s in hand yet.");
                     cm.dispose();
                 }
             } else {

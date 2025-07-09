@@ -69,17 +69,17 @@ function action(mode, type, selection) {
                 var state = eim.getIntProperty("statusStg" + stage);
 
                 if (state == -1) {           // preamble
-                    cm.sendOk("Hi. Welcome to the #bstage " + stage + "#k. Collect 25 #t4001022#'s scattered across the map, then talk to me.");
+                    cm.sendOk("Hi. Welcome to the #bstage " + stage + "#k. Collect 15 #t4001022#'s scattered across the map, then talk to me.");
                     eim.setProperty("statusStg" + stage, 0);
                 } else {       // check stage completion
-                    if (cm.haveItem(4001022, 25)) {
-                        cm.sendOk("Good job! You have collected all 25 #b#t4001022#'s.#k");
-                        cm.gainItem(4001022, -25);
+                    if (cm.haveItem(4001022, 15)) {
+                        cm.sendOk("Good job! You have collected all 15 #b#t4001022#'s.#k");
+                        cm.gainItem(4001022, -15);
 
                         eim.setProperty("statusStg" + stage, 1);
                         clearStage(stage, eim, curMap);
                     } else {
-                        cm.sendNext("Sorry you don't have all 25 #b#t4001022#'s.#k");
+                        cm.sendNext("Sorry you don't have all 15 #b#t4001022#'s.#k");
                     }
                 }
             } else {
