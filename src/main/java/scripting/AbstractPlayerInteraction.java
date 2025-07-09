@@ -1049,6 +1049,13 @@ public class AbstractPlayerInteraction {
         c.sendPacket(PacketCreator.openUI(ui));
     }
 
+    //SoupMS Extra Storage
+    public void sendExtraStorage() {
+        Character chr = getPlayer();
+        chr.setUsingExtraStorage(true);
+        chr.getExtraStorage().sendStorage(c, 9200000);
+    }
+
     public void lockUI() {
         c.sendPacket(PacketCreator.disableUI(true));
         c.sendPacket(PacketCreator.lockUI(true));
@@ -1225,3 +1232,4 @@ public class AbstractPlayerInteraction {
         map.dropMessage(6, message);
     }
 }
+

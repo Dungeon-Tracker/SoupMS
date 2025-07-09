@@ -63,6 +63,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scripting.event.EventInstanceManager;
 import server.Storage;
+import server.ExtraStorage;
 import server.TimerManager;
 import server.maps.AbstractMapObject;
 import server.maps.HiredMerchant;
@@ -140,6 +141,7 @@ public class World {
     private final ServicesManager services = new ServicesManager(WorldServices.SAVE_CHARACTER);
     private final MatchCheckerCoordinator matchChecker = new MatchCheckerCoordinator();
     private final PartySearchCoordinator partySearch = new PartySearchCoordinator();
+    private final Map<Integer, ExtraStorage> accountExtraStorages = new HashMap<>();
 
     private final Lock chnRLock;
     private final Lock chnWLock;
@@ -538,6 +540,35 @@ public class World {
         list.sort((o1, o2) -> o1.getKey() - o2.getKey());
 
         return list;
+    }
+
+    //SoupMS Extra Storage
+    public void loadAccountExtraStorage(Integer accountId) {
+        if (getAccountExtraStorage(accountId) == null) {
+            registerAccountExtraStorage(accountId);
+        }
+    }
+    private void registerAccountExtraStorage(Integer accountId) {
+        ExtraStorage storage = ExtraStorage.loadOrCreateFromDB(accountId, this.id);
+        accountCharsLock.lock();
+        try {
+            accountExtraStorages.put(accountId, storage);
+        } finally {
+            accountCharsLock.unlock();
+        }
+    }
+
+    public void unregisterAccountExtraStorage(Integer accountId) {
+        accountCharsLock.lock();
+        try {
+            accountExtraStorages.remove(accountId);
+        } finally {
+            accountCharsLock.unlock();
+        }
+    }
+
+    public ExtraStorage getAccountExtraStorage(Integer accountId) {
+        return accountExtraStorages.get(accountId);
     }
 
     public List<Character> loadAndGetAllCharactersView() {

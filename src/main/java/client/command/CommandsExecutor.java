@@ -29,6 +29,7 @@ import client.command.commands.gm0.DisposeCommand;
 import client.command.commands.gm0.DropLimitCommand;
 import client.command.commands.gm0.EnableAuthCommand;
 import client.command.commands.gm0.EquipLvCommand;
+import client.command.commands.gm0.ExtraStorageCommand;
 import client.command.commands.gm0.GachaCommand;
 import client.command.commands.gm0.GmCommand;
 import client.command.commands.gm0.HelpCommand;
@@ -367,6 +368,12 @@ public class CommandsExecutor {
         addCommand("mylawn", MapOwnerClaimCommand.class);
         addCommand("bosshp", BossHpCommand.class);
         addCommand("mobhp", MobHpCommand.class);
+        addCommand("whatdropsfrom", WhatDropsFromCommand.class);
+        addCommand("whodrops",  WhoDropsCommand.class);
+        addCommand("buffme", BuffMeCommand.class);
+        addCommand("goto",  GotoCommand.class);
+        addCommand("itemvac",  ItemVacCommand.class);
+        addCommand("extrastorage", ExtraStorageCommand.class);
 
         commandsNameDesc.add(levelCommandsCursor);
     }
@@ -375,10 +382,7 @@ public class CommandsExecutor {
     private void registerLv1Commands() {
         levelCommandsCursor = new Pair<>(new ArrayList<String>(), new ArrayList<String>());
 
-        addCommand("whatdropsfrom", 1, WhatDropsFromCommand.class);
-        addCommand("whodrops", 1, WhoDropsCommand.class);
-        addCommand("buffme", 1, BuffMeCommand.class);
-        addCommand("goto", 1, GotoCommand.class);
+
 
         commandsNameDesc.add(levelCommandsCursor);
     }
@@ -507,7 +511,7 @@ public class CommandsExecutor {
         addCommand("questrate", 4, QuestRateCommand.class);
         addCommand("travelrate", 4, TravelRateCommand.class);
         addCommand("fishrate", 4, FishingRateCommand.class);
-        addCommand("itemvac", 4, ItemVacCommand.class);
+        //addCommand("itemvac", 4, ItemVacCommand.class);
         addCommand("forcevac", 4, ForceVacCommand.class);
         addCommand("zakum", 4, ZakumCommand.class);
         addCommand("horntail", 4, HorntailCommand.class);

@@ -159,6 +159,19 @@ public class Storage {
         }
     }
 
+    public void saveToDBType(Connection con, int type){
+
+        List<Pair<Item, InventoryType>> itemsWithType = new ArrayList<>();
+
+        List<Item> list = getItems();
+        for (Item item : list) {
+            itemsWithType.add(new Pair<>(item, item.getInventoryType()));
+        }
+
+
+
+    }
+
     public boolean takeOut(Item item) {
         lock.lock();
         try {

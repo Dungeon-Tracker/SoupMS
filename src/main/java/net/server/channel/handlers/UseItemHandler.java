@@ -71,6 +71,12 @@ public final class UseItemHandler extends AbstractPacketHandler {
                 chr.dispelDebuff(Disease.CURSE);
                 remove(c, slot);
                 return;
+            } else if (itemId == ItemId.ELIXIR_OF_LIFE){
+                if(chr.getMaxHp() + 250 <= 30000){
+                    chr.updateMaxHp(chr.getMaxHp()+250);
+                    remove(c, slot);
+                    return;
+                }
             } else if (ItemConstants.isTownScroll(itemId)) {
                 if (ii.getItemEffect(toUse.getItemId()).applyTo(chr)) {
                     remove(c, slot);

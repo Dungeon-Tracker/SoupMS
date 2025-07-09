@@ -103,6 +103,7 @@ import scripting.item.ItemScriptManager;
 import server.CashShop;
 import server.ExpLogger;
 import server.ExpLogger.ExpLogRecord;
+import server.ExtraStorage;
 import server.ItemInformationProvider;
 import server.ItemInformationProvider.ScriptedItem;
 import server.Marriage;
@@ -197,9 +198,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class Character extends AbstractCharacterObject {
     private static final Logger log = LoggerFactory.getLogger(Character.class);
     private static final String LEVEL_200 = "[Congrats] %s has reached Level %d! Congratulate %s on such an amazing achievement!";
-    private static final String[] BLOCKED_NAMES = {"admin", "owner", "moderator", "intern", "donor", "administrator", "FREDRICK", "help", "helper", "alert", "notice", "maplestory", "fuck", "wizet", "fucking", "negro", "fuk", "fuc", "penis", "pussy", "asshole", "gay",
-            "nigger", "homo", "suck", "cum", "shit", "shitty", "condom", "security", "official", "rape", "nigga", "sex", "tit", "boner", "orgy", "clit", "asshole", "fatass", "bitch", "support", "gamemaster", "cock", "gaay", "gm",
-            "operate", "master", "sysop", "party", "GameMaster", "community", "message", "event", "test", "meso", "Scania", "yata", "AsiaSoft", "henesys"};
+    private static final String[] BLOCKED_NAMES = {"admin"};
 
     private int world;
     private int accountid, id, level;
@@ -356,6 +355,11 @@ public class Character extends AbstractCharacterObject {
     private boolean pendingNameChange; //only used to change name on logout, not to be relied upon elsewhere
     private long loginTime;
     private boolean chasing = false;
+    //SoupMS ExtraStorage
+    private ExtraStorage extrastorage = null;
+    private boolean usingExtraStorage = false;
+    private boolean usedExtraStorage = false;
+
 
     private Character() {
         super.setListener(new AbstractCharacterListener() {
@@ -1141,7 +1145,7 @@ public class Character extends AbstractCharacterObject {
 
     public synchronized void changeJob(Job newJob) {
         if (newJob == null) {
-            return;//the fuck you doing idiot!
+            return;//Manners :(
         }
 
         if (canRecvPartySearchInvite && getParty() == null) {
@@ -2808,6 +2812,7 @@ public class Character extends AbstractCharacterObject {
             case Sniper.PUPPET:
             case Sniper.GOLDEN_EAGLE:
             case Hermit.SHADOW_PARTNER:
+            case Magician.MAGIC_GUARD:
                 return true;
             default:
                 return false;
@@ -7307,6 +7312,7 @@ public class Character extends AbstractCharacterObject {
                 
                 ret.buddylist.loadFromDb(charid);
                 ret.storage = wserv.getAccountStorage(ret.accountid);
+                ret.extrastorage = wserv.getAccountExtraStorage(ret.accountid);
 
                 /* Double-check storage incase player is first time on server
                  * The storage won't exist so nothing to load
@@ -7315,7 +7321,10 @@ public class Character extends AbstractCharacterObject {
                     wserv.loadAccountStorage(ret.accountid);
                     ret.storage = wserv.getAccountStorage(ret.accountid);
                 }
-                
+                if(ret.extrastorage == null) {
+                                        wserv.loadAccountExtraStorage(ret.accountid);
+                                        ret.extrastorage = wserv.getAccountExtraStorage(ret.accountid);
+                }
                 int startHp = ret.hp, startMp = ret.mp;
                 ret.reapplyLocalStats();
                 ret.changeHpMp(startHp, startMp, true);
@@ -7655,7 +7664,7 @@ public class Character extends AbstractCharacterObject {
 
             recalcEquipStats();
 
-            localmagic = Math.min(localmagic, 2000);
+           // localmagic = Math.min(localmagic, 2000); SoupMS - We uncapped status bruh
 
             Integer hbhp = getBuffedValue(BuffStat.HYPERBODYHP);
             if (hbhp != null) {
@@ -8631,6 +8640,10 @@ public class Character extends AbstractCharacterObject {
                     storage.saveToDB(con);
                     usedStorage = false;
                 }
+                if (extrastorage != null && usedExtraStorage) {
+                    extrastorage.saveToDB(con);
+                    usedExtraStorage = false;
+                }
 
                 con.commit();
             } catch (Exception e) {
@@ -9059,6 +9072,25 @@ public class Character extends AbstractCharacterObject {
     public void setMiniGame(MiniGame miniGame) {
         this.miniGame = miniGame;
     }
+
+
+    //SoupMS Extra Storage
+    public void setUsedExtraStorage() {
+        usedStorage = true;
+    }
+
+    public boolean getUsingExtraStorage() {
+        return usingExtraStorage;
+    }
+
+    public void setUsingExtraStorage(boolean isUsingExtraStorage) {
+        usingExtraStorage = isUsingExtraStorage;
+    }
+
+    public ExtraStorage getExtraStorage() {
+        return extrastorage;
+    }
+
 
     public void setMiniGamePoints(Character visitor, int winnerslot, boolean omok) {
         if (omok) {
