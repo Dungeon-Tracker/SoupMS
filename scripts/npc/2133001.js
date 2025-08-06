@@ -89,8 +89,8 @@ function action(mode, type, selection) {
             } else if (mapid == 930000300) {
                 cm.getEventInstance().warpEventTeam(930000400);
             } else if (mapid == 930000400) {
-                if (cm.haveItem(4001169, 20) && cm.isEventLeader()) {
-                    cm.gainItem(4001169, -20);
+                if (cm.haveItem(4001169, 5) && cm.isEventLeader()) {
+                    cm.gainItem(4001169, (0-cm.getItemQuantity(4001169))); //SoupMS Totally forgot how to remove items whateva hahahahah
                     cm.getEventInstance().warpEventTeam(930000500);
                 } else {
                     cm.warp(930000800, 0);

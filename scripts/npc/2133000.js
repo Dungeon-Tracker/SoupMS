@@ -87,36 +87,36 @@ function action(mode, type, selection) {
                 cm.sendOk("#e#b<Party Quest: Forest of Poison Haze>#k#n\r\nIn this PQ, your mission is to progressively make your way through the woods, taking on all baddies in your path, solving many puzzles you encounter and rallying yourselves to take the best of teamwork to overcome time limits and powerful creatures. Clearing the final boss, your team have a chance to obtain a marble that, #bwhen dropped by the fountain at the exit map#k, will guarantee the team extra prizes. Good luck.");
                 cm.dispose();
             } else {
-                cm.sendSimple("So, what prize do you want to obtain?\r\n#b#L0#Give me Altaire Earrings.\r\n#L1#Give me Glittering Altaire Earrings.\r\n#L2#Give me Brilliant Altaire Earrings");
+                cm.sendSimple("So, what prize do you want to obtain?\r\n#b#L0#Give me Altaire Earrings.\r\n#L1#Give me Glittering Altaire Earrings.\r\n#L2#Give me Perfected Altaire Earrings");
             }
         } else if (status == 2) {
             if (selection == 0) {
-                if (!cm.haveItem(1032060) && cm.haveItem(4001198, 10)) {
+                if (!cm.haveItem(1032060) && cm.haveItem(4001158, 5)) {
                     cm.gainItem(1032060, 1);
-                    cm.gainItem(4001198, -10);
+                    cm.gainItem(4001158, -5);
                     cm.dispose();
                 } else {
-                    cm.sendOk("You either have Altair Earrings already or you do not have 10 Altair Fragments.");
+                    cm.sendOk("You either have Altair Earrings already or you do not have 5 Feathers of the Goddess.");
                     cm.dispose();
                 }
             } else if (selection == 1) {
-                if (cm.haveItem(1032060) && !cm.haveItem(1032061) && cm.haveItem(4001198, 10)) {
+                if (cm.haveItem(1032060) && !cm.haveItem(1032061) && cm.haveItem(4001158, 5)) {
                     cm.gainItem(1032060, -1);
                     cm.gainItem(1032061, 1);
-                    cm.gainItem(4001198, -10);
+                    cm.gainItem(4001158, -5);
                     cm.dispose();
                 } else {
-                    cm.sendOk("You either don't have Altair Earrings already or you do not have 10 Altair Fragments.");
+                    cm.sendOk("You either don't have Altair Earrings already or you do not have 5 Feathers of the Goddess.");
                     cm.dispose();
                 }
             } else if (selection == 2) {
-                if (cm.haveItem(1032061) && !cm.haveItem(1032072) && cm.haveItem(4001198, 10)) {
+                if (cm.haveItem(1032061) && !cm.haveItem(1032072) && cm.haveItem(4001158, 10)) {
                     cm.gainItem(1032061, -1);
-                    cm.gainItem(1032072, 1);    // thanks yuxaij for noticing unexpected itemid here
-                    cm.gainItem(4001198, -10);
+                    cm.gainItem(1032062, 1);    // Added Lvl 60 Altair with 5 stats
+                    cm.gainItem(4001158, -10);
                     cm.dispose();
                 } else {
-                    cm.sendOk("You either don't have Glittering Altair Earrings already or you do not have 10 Altair Fragments.");
+                    cm.sendOk("You either don't have Perfected Altair Earrings already or you do not have 10 Feathers of the Goddess.");
                     cm.dispose();
                 }
             }

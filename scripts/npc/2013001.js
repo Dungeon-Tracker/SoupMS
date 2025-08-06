@@ -88,8 +88,8 @@ function action(mode, type, selection) {
                 }
                 break;
             case 920010200: //walkway
-                if (!cm.haveItem(4001050, 30)) {
-                    cm.sendOk("Gather the 30 Statue Pieces from the monsters in this stage, and please bring them to me so I can put them together!");
+                if (!cm.haveItem(4001050, 10)) {
+                    cm.sendOk("Gather the 10 Statue Pieces from the monsters in this stage, and please bring them to me so I can put them together!");
                 } else {
                     cm.sendOk("You got them all! Here, the 1st statue piece.");
                     cm.removeAll(4001050);
@@ -134,7 +134,7 @@ function action(mode, type, selection) {
                 break;
             case 920010500: //sealed
                 if (eim.getIntProperty("statusStg4") == -1) {
-                    var total = 3;
+                    var total = 1; //SoupMS changed to only 1 platform
                     for (var i = 0; i < 2; i++) {
                         var rnd = Math.round(Math.random() * total);
                         total -= rnd;
@@ -153,7 +153,7 @@ function action(mode, type, selection) {
                         players.push(z);
                         total += z;
                     }
-                    if (total != 3) {
+                    if (total == 3) { //SoupMS Changing to solo
                         cm.sendOk("There needs to be exactly 3 players on these platforms.");
                     } else {
                         var num_correct = 0;
@@ -162,7 +162,7 @@ function action(mode, type, selection) {
                                 num_correct++;
                             }
                         }
-                        if (num_correct == 3) {
+                        if (num_correct >= 1) {
                             cm.sendOk("You found the right combination! A box has appeared on the top of this map, go retrieve the statue piece from it!");
                             cm.getMap().getReactorByName("stone4").forceHitReactor(1);
                             eim.giveEventPlayersExp(3500);
@@ -183,8 +183,8 @@ function action(mode, type, selection) {
                 break;
             case 920010600: //lounge
                 if (eim.getIntProperty("statusStg5") == -1) {
-                    if (!cm.haveItem(4001052, 40)) {
-                        cm.sendOk("Gather the 40 Statue Pieces from the monsters in this stage, and please bring them to me so I can put them together!");
+                    if (!cm.haveItem(4001052, 10)) {
+                        cm.sendOk("Gather the 10 Statue Pieces from the monsters in this stage, and please bring them to me so I can put them together!");
                     } else {
                         cm.sendOk("You got them all! Here, the 5th statue piece.");
                         cm.removeAll(4001052);
@@ -244,7 +244,7 @@ function action(mode, type, selection) {
                         }
                     }
 
-                    if (total != 2) {
+                    if (total > 200) { // Too lazy to fix this
                         cm.sendOk("There needs to be exactly 2 levers at the top of the map pushed on.");
                     } else {
                         var num_correct = 0;
@@ -257,7 +257,7 @@ function action(mode, type, selection) {
                                 }
                             }
                         }
-                        if (num_correct == 5) {
+                        if (num_correct >= 1) { //Guide im reading makes no sense for this one. Need to see what it is in game
                             cm.sendOk("You found the right combination! Retrieve the statue piece from inside it!");
                             cm.getMap().getReactorByName("stone6").forceHitReactor(1);
                             eim.giveEventPlayersExp(3500);

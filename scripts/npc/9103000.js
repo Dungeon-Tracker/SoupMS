@@ -69,10 +69,16 @@ function action(mode, type, selection) {
                 cm.dispose();
             }
         } else if (status == 1) {
+           if(cm.canHold(4001158, 1)){ //Added feather of goddess
             cm.removeAll(4001106);
-            cm.getEventInstance().giveEventPlayersExp(50 * qty);
+            cm.gainItem(4001158,1); //SoupMS Adding PQ reward for 50+ PQ's
+            cm.getEventInstance().giveEventPlayersExp(120 * qty); //Exp kind of low
             cm.getEventInstance().clearPQ();
             cm.dispose();
+            }else{
+                cm.sendOk("Please make some room in your ETC");
+                cm.dispose();
+            }
         }
     }
 }

@@ -21,11 +21,40 @@
 /**
  * @author: Ronan
  * @event: Orbis PQ
+
+ *Overview of Changes
+ Entrance - Changed from 20 to 8 (Reactor - 2006000.img)
+ Walkway - Changed from 30 to 10
+ Lounge - Changed from 40 to 10
+ Storage (920010300) - Maximum of 4 monsters can spawn
+ scripts\reactor\2001002.js
+ scripts\reactor\2001003.js
+ scripts\reactor\2001004.js
+ scripts\reactor\2001005.js
+ scripts\reactor\2001006.js
+ scripts\reactor\2001007.js
+ scripts\reactor\2001008.js
+ scripts\reactor\2001009.js
+ scripts\reactor\2001010.js
+ scripts\reactor\2001011.js
+ scripts\reactor\2001012.js
+ scripts\reactor\2001013.js
+ scripts\reactor\2001014.js
+ scripts\reactor\2001015.js
+
+Original set up - randomized reactor by 14
+New set up - changed randomization to 4 because this ladder is a demonic entity and my play testing is testing my limits
+
+ Sealed - Changed to guessing 1 of 3 platforms
+
+ Relevant NPC's
+ Chamberlain Eak - 2013001 - Drives all PQ code
+
  */
 
 var isPq = true;
-var minPlayers = 5, maxPlayers = 6;
-var minLevel = 51, maxLevel = 70;
+var minPlayers = 1, maxPlayers = 6;
+var minLevel = 51, maxLevel = 120;
 var entryMap = 920010000;
 var exitMap = 920011200;
 var recruitMap = 200080101;
@@ -172,8 +201,8 @@ function setup(level, lobbyid) {
 function isTeamAllJobs(eim) {
     var eventJobs = eim.getEventPlayersJobs();
     var rangeJobs = parseInt('111110', 2);
-
-    return ((eventJobs & rangeJobs) == rangeJobs);
+    return true; //SoupMS Solo so why not
+   // return ((eventJobs & rangeJobs) == rangeJobs);
 }
 
 function afterSetup(eim) {
@@ -189,7 +218,7 @@ function playerEntry(eim, player) {
     var map = eim.getMapInstance(entryMap);
     player.changeMap(map, map.getPortal(0));
 
-    var texttt = "Hi, my name is Eak, the Chamberlain of the Goddess. Don't be alarmed; you won't be able to see me right now. Back when the Goddess turned into a block of stone, I simultaneously lost my own power. If you gather up the power of the Magic Cloud of Orbis, however, then I'll be able to recover my body and re-transform back to my original self. Please collect #b20#k Magic Clouds and bring them back to me. Right now, you'll only see me as a tiny, flickering light.";
+    var texttt = "Hi, my name is Eak, the Chamberlain of the Goddess. Don't be alarmed; you won't be able to see me right now. Back when the Goddess turned into a block of stone, I simultaneously lost my own power. If you gather up the power of the Magic Cloud of Orbis, however, then I'll be able to recover my body and re-transform back to my original self. Please collect #b8#k Magic Clouds and bring them back to me. Right now, you'll only see me as a tiny, flickering light.";
     player.getAbstractPlayerInteraction().npcTalk(2013001, texttt);
 }
 

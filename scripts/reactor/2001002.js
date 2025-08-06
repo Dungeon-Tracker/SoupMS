@@ -27,8 +27,8 @@
 
 function act() {
     if (rm.getEventInstance().getIntProperty("statusStg2") == -1) {
-        var rnd = Math.max(Math.floor(Math.random() * 14), 4);
-
+        //var rnd = Math.max(Math.floor(Math.random() * 14), 4);
+        var rnd = Math.max(Math.floor(Math.random() * 4),1); //SoupMS Vastly lowered requirement from 1 -4 because no way dude
         rm.getEventInstance().setProperty("statusStg2", "" + rnd);
         rm.getEventInstance().setProperty("statusStg2_c", "0");
     }

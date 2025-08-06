@@ -21,11 +21,35 @@
 /**
  * @author: Ronan
  * @event: Magatia PQ (Alcadno)
+
+    Quest changed for pendant (3382.js)
+    10 feathers for Eye of Horus (1122010)
+    5 feathers per upgrade (2041212)
+
+    Juliet side
+
+    Updated NPC 2112005 changed from Alcadno marble to feathers (4001160 -> 4001158)
+
+ SoupMS - Removed fieldtype 9 (Dark Camera feature) from the dark maps.
+
+ Affected client maps:
+
+ 926110001
+ 926110201
+ 926110202
+
+ Changed Reactor 2618000 reactor.wz
+ Moves to 0 -> 4 -> 7
+ Updated 2618000.js to reflect this change
+
+ Increased respawn time and removed one spawn point
+ eim.schedule("respawnStages", 15 * 2000); 1000 changed to 2000 listed here for reference :)
+
  */
 
 var isPq = true;
-var minPlayers = 4, maxPlayers = 4;
-var minLevel = 71, maxLevel = 85;
+var minPlayers = 1, maxPlayers = 4;
+var minLevel = 71, maxLevel = 155;
 var entryMap = 926110000;
 var exitMap = 926110700;
 var recruitMap = 261000021;
@@ -69,7 +93,7 @@ function setEventRequirements() {
     em.setProperty("party", reqStr);
 }
 
-function setEventExclusives(eim) {
+function setEventExclusives(eim) { //SoupMS changed 401132 to not be unique
     var itemSet = [4001130, 4001131, 4001132, 4001133, 4001134, 4001135];
     eim.setExclusiveItems(itemSet);
 }
@@ -257,8 +281,8 @@ function respawnStages(eim) {
         const LifeFactory = Java.type('server.life.LifeFactory');
         const Point = Java.type('java.awt.Point');
         if (mobcount == 0) {
-            mobobj = LifeFactory.getMonster(9300150);
-            mapobj.spawnMonsterOnGroundBelow(mobobj, new Point(-278, -126));
+           // mobobj = LifeFactory.getMonster(9300150);
+           // mapobj.spawnMonsterOnGroundBelow(mobobj, new Point(-278, -126));
 
             mobobj = LifeFactory.getMonster(9300150);
             mapobj.spawnMonsterOnGroundBelow(mobobj, new Point(-542, -126));
@@ -268,7 +292,7 @@ function respawnStages(eim) {
         }
     }
 
-    eim.schedule("respawnStages", 15 * 1000);
+    eim.schedule("respawnStages", 15 * 2000);
 }
 
 function playerEntry(eim, player) {

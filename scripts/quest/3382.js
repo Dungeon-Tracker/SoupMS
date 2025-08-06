@@ -45,24 +45,24 @@ function end(mode, type, selection) {
         }
 
         if (status == 0) {
-            if (qm.haveItem(4001159, 25) && qm.haveItem(4001160, 25) && !qm.haveItemWithId(1122010, true)) {
+           // if (qm.haveItem(4001159, 25) && qm.haveItem(4001160, 25) && !qm.haveItemWithId(1122010, true)) {
+            if (qm.haveItem(4001158, 10) && !qm.haveItemWithId(1122010, true)) {
                 if (qm.canHold(1122010)) {
-                    qm.gainItem(4001159, -25);
-                    qm.gainItem(4001160, -25);
+                    qm.gainItem(4001158, -10);
                     qm.gainItem(1122010, 1);
 
-                    qm.sendOk("Thank you for retrieving the marbles. Accept this pendant as a token of my appreciation.");
+                    qm.sendOk("Thank you for retrieving the feathers. Accept this pendant as a token of my appreciation.");
                 } else {
                     qm.sendNext("Free a slot on your EQUIP tab before claiming a prize.");
                     return;
                 }
-            } else if (qm.haveItem(4001159, 10) && qm.haveItem(4001160, 10)) {
-                if (qm.canHold(2041212)) {
-                    qm.gainItem(4001159, -10);
-                    qm.gainItem(4001160, -10);
+          //  } else if (qm.haveItem(4001159, 10) && qm.haveItem(4001160, 10)) {
+            } else if (qm.haveItem(4001158, 5)) { //5 feathers per upgrade
+                        if (qm.canHold(2041212)) {
+                    qm.gainItem(4001158, -5);
                     qm.gainItem(2041212, 1);
 
-                    qm.sendOk("Thank you for retrieving the marbles. This rock, that I am giving to you, can be used to improve the stats on the #b#t1122010##k. Take it as a token of my appreciation and use it wisely.");
+                    qm.sendOk("Thank you for retrieving the feathers. This rock, that I am giving to you, can be used to improve the stats on the #b#t1122010##k. Take it as a token of my appreciation and use it wisely.");
                 } else {
                     qm.sendNext("Free a slot on your USE tab before claiming a prize.");
                     return;

@@ -64,7 +64,7 @@ function action(mode, type, selection) {
                         cm.dispose();
                         return;
                     }
-                    cm.gainItem(4001158, 1);
+                    cm.gainItem(4001158, 1); //Soupms we dont grind this hard
                     cm.warp(251010404, 0);
                 } else {
                     if (cm.haveItem(1003267, 1)) {
@@ -83,10 +83,10 @@ function action(mode, type, selection) {
                             cm.sendOk("You need 20 #t4001158# to get the next hat.");
                         }
                     } else if (cm.haveItem(1002572, 1)) {
-                        if (cm.haveItem(4001158, 20)) {
+                        if (cm.haveItem(4001158, 15)) {
                             if (cm.canHold(1002573, 1)) {
                                 cm.gainItem(1002572, -1);
-                                cm.gainItem(4001158, -20);
+                                cm.gainItem(4001158, -15);
                                 cm.gainItem(1002573, 1);
                                 cm.sendOk("I have given you the hat.");
                             } else {
@@ -96,9 +96,9 @@ function action(mode, type, selection) {
                             cm.sendOk("You need 20 #t4001158# to get the next hat.");
                         }
                     } else {
-                        if (cm.haveItem(4001158, 20)) {
+                        if (cm.haveItem(4001158, 10)) {
                             if (cm.canHold(1002572, 1)) {
-                                cm.gainItem(4001158, -20);
+                                cm.gainItem(4001158, -10);
                                 cm.gainItem(1002572, 1);
                                 cm.sendOk("I have given you the hat.");
                             } else {

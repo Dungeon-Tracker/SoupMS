@@ -29,7 +29,8 @@ function act() {
     rm.getEventInstance().clearPQ();
 
     rm.getEventInstance().setProperty("statusStg8", "1");
-    eim.giveEventPlayersExp(3500);
+    var eim = rm.getEventInstance(); //SoupMS generated an error ? - Not set
+    eim.giveEventPlayersExp(13500); //Exp low af
     eim.showClearEffect(true);
 
     rm.getEventInstance().startEventTimer(5 * 60000); //bonus time

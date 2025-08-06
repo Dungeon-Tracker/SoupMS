@@ -27,7 +27,7 @@
 
 function act() {
     if (rm.getEventInstance().getIntProperty("statusStg2") == -1) {
-        var rnd = Math.floor(Math.random() * 14);
+        var rnd = Math.floor(Math.random() * 4);
 
         rm.getEventInstance().setProperty("statusStg2", "" + rnd);
         rm.getEventInstance().setProperty("statusStg2_c", "0");

@@ -21,11 +21,38 @@
 /**
  * @author: Ronan
  * @event: Magatia PQ (Zenumist)
+
+    Romeo Side
+
+      Quest changed for pendant (3382.js)
+        10 feathers for Eye of Horus (1122010)
+        5 feathers per upgrade (2041212)
+
+    Updated NPC
+    2112006 - Changed from zenumist to feathers for reward (400159 -> 4001158) -
+
+    This might make having both PQ's irrelevant but I'd rather have some variety ya dig.
+    Also doing this 50+ times is insanity for a low stat pendant
+
+    Might changed up the PQ to have different things for a few maps but not sure yet.
+
+    SoupMS - Removed fieldtype 9 (Dark Camera feature) from the dark maps.
+
+    926100001
+    926100201
+    926100202
+
+    Changed Reactor 2618000 in reactor.wz
+    Moves to 0 -> 4 -> 7
+    Updated 2618000.js to reflect this change
+
+    Increased respawn time eim.schedule("respawnStages", 15 * 2000); from 1000 to 2000
+    Dropped one mob spawn point
  */
 
 var isPq = true;
-var minPlayers = 4, maxPlayers = 4;
-var minLevel = 71, maxLevel = 85;
+var minPlayers = 1, maxPlayers = 4;
+var minLevel = 71, maxLevel = 155;
 var entryMap = 926100000;
 var exitMap = 926100700;
 var recruitMap = 261000011;
@@ -257,8 +284,8 @@ function respawnStages(eim) {
         const LifeFactory = Java.type('server.life.LifeFactory');
         const Point = Java.type('java.awt.Point');
         if (mobcount == 0) {
-            mobobj = LifeFactory.getMonster(9300150);
-            mapobj.spawnMonsterOnGroundBelow(mobobj, new Point(-278, -126));
+          //  mobobj = LifeFactory.getMonster(9300150);
+          //  mapobj.spawnMonsterOnGroundBelow(mobobj, new Point(-278, -126));
 
             mobobj = LifeFactory.getMonster(9300150);
             mapobj.spawnMonsterOnGroundBelow(mobobj, new Point(-542, -126));
@@ -268,7 +295,7 @@ function respawnStages(eim) {
         }
     }
 
-    eim.schedule("respawnStages", 15 * 1000);
+    eim.schedule("respawnStages", 15 * 2000);
 }
 
 function playerEntry(eim, player) {

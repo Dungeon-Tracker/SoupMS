@@ -25,6 +25,8 @@
 
     Ellin - 2133000
     Ellin - 2133001 - Changed from 20 marbles to 5 (this was annoying on test plays)
+ Reward Portal:
+    party6_stage800 - changed reward to feathers of the goddess
  */
 
 var isPq = true;

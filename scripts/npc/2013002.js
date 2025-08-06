@@ -56,6 +56,8 @@ function action(mode, type, selection) {
                 cm.sendNext("Thank you for not only restoring the statue, but rescuing me, Minerva, from the entrapment. May the blessing of the goddess be with you till the end... As a token of gratitude, please accept this memento for your bravery.");
             } else if (status == 1) {
                 if (cm.getEventInstance().giveEventReward(cm.getPlayer())) {
+                    cm.gainItem(4001158, 1); //Get dat feather bruh
+
                     cm.warp(200080101, 0);
                     cm.dispose();
                 } else {

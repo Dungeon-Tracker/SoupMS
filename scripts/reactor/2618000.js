@@ -21,12 +21,16 @@
 */
 
 /*2618000.js - MagatiaPQ Beaker
+    Maps:
+    926110100
+    926100100
  *@author Ronan
  */
 
 function hit() {
-    if (rm.getReactor().getState() == 6) {
-        var eim = rm.getEventInstance();
+  //      rm.playerMessage(5, "Current state:" + rm.getReactor().getState());
+    if (rm.getReactor().getState() >= 4) { //SoupMS - Stage 8 is actually the completed stage not sure why 6 was chosen
+        var eim = rm.getEventInstance();  //Stage 6 was chosen because the hit code is on the current state. So 6 -> 7 and 7 auto goes to 8
 
         var done = eim.getIntProperty("statusStg3") + 1;
         eim.setIntProperty("statusStg3", done);

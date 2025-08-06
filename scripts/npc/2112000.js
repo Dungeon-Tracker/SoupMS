@@ -89,7 +89,7 @@ function action(mode, type, selection) {
         } else {
             if (status == 0) {
                 if (eim.isEventCleared()) {
-                    cm.sendOk("Nooooo... I have been beated? But how? Everything I did was for the sake of the development of a greater alchemy! You can't jail me, I did what everybody standing in a place like mine would do! But no, they simply decided to damp up the progress of the science JUST BECAUSE it was deemed dangerous??? Oh, come on!");
+                    cm.sendOk("Nooooo... I have been beaten? But how? Everything I did was for the sake of the development of a greater alchemy! You can't jail me, I did what everybody standing in a place like mine would do! But no, they simply decided to damp up the progress of the science JUST BECAUSE it was deemed dangerous??? Oh, come on!");
                 } else {
                     var state = eim.getIntProperty("yuletePassed");
 

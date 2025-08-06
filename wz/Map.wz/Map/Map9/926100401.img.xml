@@ -67,19 +67,6 @@
   <imgdir name="life">
     <imgdir name="0">
       <string name="type" value="m"/>
-      <string name="id" value="9300150"/>
-      <int name="x" value="-278"/>
-      <int name="y" value="-126"/>
-      <int name="mobTime" value="0"/>
-      <int name="f" value="0"/>
-      <int name="hide" value="0"/>
-      <int name="fh" value="8"/>
-      <int name="cy" value="-116"/>
-      <int name="rx0" value="-328"/>
-      <int name="rx1" value="-248"/>
-    </imgdir>
-    <imgdir name="1">
-      <string name="type" value="m"/>
       <string name="id" value="9300137"/>
       <int name="x" value="-414"/>
       <int name="y" value="-118"/>
@@ -91,7 +78,7 @@
       <int name="rx0" value="-448"/>
       <int name="rx1" value="-368"/>
     </imgdir>
-    <imgdir name="2">
+    <imgdir name="1">
       <string name="type" value="m"/>
       <string name="id" value="9300150"/>
       <int name="x" value="-542"/>

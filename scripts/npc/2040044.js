@@ -57,7 +57,14 @@ function action(mode, type, selection) {
         var eim = cm.getPlayer().getEventInstance();
 
         if (eim.getProperty(stage.toString() + "stageclear") != null) {
-            cm.sendNext("Hurry, goto the next stage, the portal is open!");
+            if(cm.canHold(4001158,1)){
+                cm.gainItem(4001158,1);
+                cm.sendNext("Hurry, goto the next stage, the portal is open!");
+            }else{
+                cm.sendOk("Please make room in your ETC before continuing.");
+            }
+
+
         } else {
             if (eim.isEventLeader(cm.getPlayer())) {
                 var state = eim.getIntProperty("statusStg" + stage);
