@@ -16,6 +16,10 @@
     <string name="name" value="Sharenian Grounds : Swiftness"/>
     <string name="desc" value="From the ancient remains, an unknown blessing grants you swiftness. Increases Accuracy &amp; Avoidability."/>
   </imgdir>
+  <imgdir name="2023004">
+    <string name="name" value="Elixir of Life"/>
+    <string name="desc" value="Potion of questionable origins that raises max HP by 250."/>
+  </imgdir>
   <imgdir name="2000004">
     <string name="name" value="Elixir"/>
     <string name="desc" value="A legendary potion.\nRecovers 50% HP and 50% MP."/>

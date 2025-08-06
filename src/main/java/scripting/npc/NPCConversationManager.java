@@ -471,6 +471,11 @@ public class NPCConversationManager extends AbstractPlayerInteraction {
         c.sendPacket(PacketCreator.getFredrick(getPlayer()));
     }
 
+    public void storeItem(int slot){
+       // ItemFactory.ORES.
+    }
+
+
     public int partyMembersInMap() {
         int inMap = 0;
         for (Character char2 : getPlayer().getMap().getCharacters()) {

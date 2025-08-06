@@ -9403,6 +9403,10 @@
       <string name="name" value="Perfect Pitch"/>
       <string name="desc" value="This Music Note gives Inkwell the perfect pitch he&apos;s been dying to find. You can trade it for a rare item if you go to the Free Market Entrance or talk to Inkwell in Henesys before March 30th."/>
     </imgdir>
+    <imgdir name="4310001">
+      <string name="name" value="Vote Point"/>
+      <string name="desc" value="Vote points."/>
+    </imgdir>
     <imgdir name="4160044">
       <string name="name" value="Pet Command Guide : Baby Tiger"/>
       <string name="desc" value="A guide that contains commands for Baby Tiger. \n#cYou can open the book by double-clicking on it.#"/>

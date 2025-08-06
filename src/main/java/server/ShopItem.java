@@ -28,13 +28,21 @@ public class ShopItem {
     private final short buyable;
     private final int itemId;
     private final int price;
-    private final int pitch;
+    private int pitch; //Changed for testing class overloading on shop icons
 
     public ShopItem(short buyable, int itemId, int price, int pitch) {
         this.buyable = buyable;
         this.itemId = itemId;
         this.price = price;
         this.pitch = pitch;
+    }
+
+    //SoupMS Multi Icon shop test
+    public ShopItem(short buyable, int itemId, int price) {
+        this.buyable = buyable;
+        this.itemId = itemId;
+        this.price = price;
+
     }
 
     public short getBuyable() {

@@ -63,7 +63,7 @@ public class ExtraStorageCommand extends Command {
                         inv.unlockInventory();
                     }
 
-                    KarmaManipulator.toggleKarmaFlagToUntradeable(tempItem);
+                 //   KarmaManipulator.toggleKarmaFlagToUntradeable(tempItem);
                     tempItem.setQuantity(quantity);
 
                     boolean success = extraStorage.store(tempItem); // inside a critical section, "!(storage.isFull())" is still in effect...

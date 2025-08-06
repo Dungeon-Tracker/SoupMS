@@ -2425,9 +2425,42 @@ public class PacketCreator {
         p.writeInt(sid);
         p.writeShort(items.size()); // item count
         for (ShopItem item : items) {
+            p.writeInt(item.getItemId()); //SoupMS set up for multi token code will use perfect pitch for token id's
+            if(item.getPitch() > 0) { //Opens the token shop
+                p.writeInt(0); //Meso price is always 0
+                p.writeInt( item.getPrice()); //Token price is listed as the price in SQL
+            }
+            else
+            { //Meso shop
+                p.writeInt(item.getPrice()); //If 0 then token shop opens -> on PP
+                p.writeInt(0); //Perfect Pitch will always be 0 on meso shops
+            }
+            p.writeInt(0); //Can be used x minutes after purchase
+            p.writeInt(0); //Hmm
+            if (!ItemConstants.isRechargeable(item.getItemId())) {
+                p.writeShort(1); // stacksize o.o
+                p.writeShort(item.getBuyable());
+            } else {
+                p.writeShort(0);
+                p.writeInt(0);
+                p.writeShort(doubleToShortBits(ii.getUnitPrice(item.getItemId())));
+                p.writeShort(ii.getSlotMax(c, item.getItemId()));
+            }
+        }
+        return p;
+    }
+
+    //SoupMS Multi Token Implement
+    public static Packet getNPCShop(Client c, int sid, int tokenId, List<ShopItem> items) {
+        ItemInformationProvider ii = ItemInformationProvider.getInstance();
+        final OutPacket p = OutPacket.create(SendOpcode.OPEN_NPC_SHOP);
+        p.writeInt(tokenId); //Needs client edit to accept this packet change
+        p.writeInt(sid);
+        p.writeShort(items.size()); // item count
+        for (ShopItem item : items) {
             p.writeInt(item.getItemId());
-            p.writeInt(item.getPrice());
-            p.writeInt(item.getPrice() == 0 ? item.getPitch() : 0); //Perfect Pitch
+            p.writeInt(tokenId > 0 ? 0 : item.getPrice());
+            p.writeInt(tokenId > 0 ? item.getPrice() : 0);
             p.writeInt(0); //Can be used x minutes after purchase
             p.writeInt(0); //Hmm
             if (!ItemConstants.isRechargeable(item.getItemId())) {
@@ -3993,6 +4026,7 @@ public class PacketCreator {
         p.writeInt(oid);
         p.writeLong(0);
         writeIntMask(p, stati);
+
         for (Map.Entry<MonsterStatus, Integer> stat : stati.entrySet()) {
             p.writeShort(stat.getValue());
             if (mse.isMonsterSkill()) {
@@ -4003,6 +4037,7 @@ public class PacketCreator {
             p.writeShort(-1); // might actually be the buffTime but it's not displayed anywhere
         }
         int size = stati.size(); // size
+
         if (reflection != null) {
             for (Integer ref : reflection) {
                 p.writeInt(ref);
@@ -4013,7 +4048,7 @@ public class PacketCreator {
         }
         p.writeByte(size); // size
         p.writeInt(0);
-        return p;
+       return p;
     }
 
     public static Packet cancelMonsterStatus(int oid, Map<MonsterStatus, Integer> stats) {

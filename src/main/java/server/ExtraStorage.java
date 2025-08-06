@@ -11,8 +11,11 @@ be able to store all of them but it should be more than enough. If not fuck you 
 I originally wanted to implement an NPC that would use 3 separate categories from itemfactory
 
 But alas I don't have the patience to figure out NPC dialog and I got slightly frustrated figuring out which functions
-to use. At the end of the day this accomplished it and I can work on the next part. Maybe future me can implement this
-but I feel like using the storage NPC looks cleaner.
+to use - High level the only thing needed to do is to add the type saving by calling saveItems and loadItems.
+At the end of the day this implementation accomplished it and I can work on something else. Maybe future me can implement this
+but I feel like using the storage NPC looks cleaner so maybe i won't do this.
+
+I made Cody (9200000) the storage NPC because his chat bubble has always pissed me off. So now you are a storage bitch.
 
 */
 package server;

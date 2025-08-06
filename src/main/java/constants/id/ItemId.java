@@ -47,6 +47,7 @@ public class ItemId {
     public static final int BLUE_POTION = 2000003;
     public static final int ORANGE_POTION = 2000001;
     public static final int MANA_ELIXIR = 2000006;
+    public static final int ELIXIR_OF_LIFE = 2023004; //SoupMS - Max hp
 
     // HP/MP recovery
     public static final int SORCERERS_POTION = 2022337;
